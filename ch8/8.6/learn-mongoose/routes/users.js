@@ -1,13 +1,12 @@
 var express = require('express');
-var User = require('../models').User;
+var User = require('../schemas/user');
 var router = express.Router();
 
-// Convert Promise to async/await
 router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll();
+    const users = await User.find();
     res.json(users);
-  } catch(err) {
+  } catch (err) {
     console.error(err);
     next(err);
   }
@@ -15,11 +14,12 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const user = await User.create({
+    const user = await new User({
       name: req.body.name,
       age: req.body.age,
       married: req.body.married,
     });
+    user.save();
     console.log(user);
     res.status(201).json(user);
   } catch (err) {
