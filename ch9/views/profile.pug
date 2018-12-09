@@ -2,6 +2,11 @@ extends layout
 
 block content
   .timeline
+    .myProfile
+      h2 내 정보
+      if user && user.id
+        div= user.nick
+        div= user.email
     .followings.half
       h2 팔로잉 목록
       if user.Followings

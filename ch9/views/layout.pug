@@ -19,6 +19,7 @@ html
               div 팔로워
               .count.follower-count= user.Followers && user.Followers.length || 0
             input#my-id(type='hidden' value=user.id)
+            a#my-profile.btn(href='/') 홈
             a#my-profile.btn(href='/profile') 내 프로필
             a#logout.btn(href='/auth/logout') 로그아웃
           else
@@ -31,10 +32,11 @@ html
                 input#password(type='password' name='password' required)
               if loginError
                 .error-message= loginError
+              a#my-profile.btn(href='/') 홈
               a#join.btn(href='/join') 회원가입
               button#login.btn(type='submit') 로그인
               a#kakao.btn(href='/auth/kakao') 카카오톡
         footer
           | Made by&nbsp;
-          a(href='https://www.zerocho.com' target='_blank') ZeroCho
+          a(href='http://suitee.me' target='_blank') yoon.homme
       block content
